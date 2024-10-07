@@ -1,0 +1,31 @@
+import os
+os.system('clear')
+class Room:
+    def __init__(self,l,w,h):
+        self.length = l
+        self.width = w
+        self.height = h
+    def show_size(self):
+        sq = self.length * self.width
+        print(f'Total area of the room: {sq}sqkm')
+        print(f'Height of the room: {self.height}')
+    def windows(self):
+        res = (self.length * self.width * self.height) // (2 * 15)
+        return f'The room would fit {res} windows\n'
+
+ls = []
+count = 0
+for x in range(5):
+    count += 1
+    print(f'Room {count}.')
+    l = int(input('Enter length(uzunligi): '))
+    w = int(input('Enter width(eni): '))
+    h = int(input('Enter height(bo\'yi): '))
+    ls.append(Room(l,w,h))
+os.system('clear')
+c = 0
+for y in ls:
+    c += 1
+    print(f'Room {c}.')
+    y.show_size()
+    print(y.windows())

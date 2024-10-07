@@ -1,0 +1,8 @@
+dc = {'first_name' : 'John', 'last_name' : 'Doe', 'age' : 34, 'student' : False, 'worker' : True}
+f = open('Sample_dictionary','w')
+f.write(str(dc))
+f.close()
+info = open('Sample_dictionary','r')
+dt = info.read()
+info.close
+print(dc)

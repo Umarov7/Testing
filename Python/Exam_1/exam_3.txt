@@ -1,0 +1,16 @@
+f = open('Sample_file.txt','w')
+text = 'hello world\ntoday is our third exam'
+f.write(text)
+f.close()
+
+dt = open('Sample_file.txt','r')
+words = dt.readlines()
+ls = []
+for x in words:
+    w = x.split(' ')
+    ls.extend(w)
+ls.sort()
+res = ''
+for y in ls:
+    res += f'{y} '
+print(res)

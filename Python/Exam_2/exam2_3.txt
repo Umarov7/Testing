@@ -1,0 +1,52 @@
+import os, sys
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+os.system('clear')
+
+class Project(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Prime numbers')
+        self.setFixedSize(1000,500)
+        self.setFont(QFont('',20))
+
+        self.ln = QLineEdit(self)
+        self.ln.setGeometry(400,50,200,50)
+
+        self.bn = QPushButton('Display',self)
+        self.bn.setGeometry(425,150,150,50)
+        self.bn.setStyleSheet('background: lime')
+        self.bn.clicked.connect(self.show_prime)
+
+        self.inp = QLabel('INPUT',self)
+        self.inp.setGeometry(450,250,100,50)
+        self.inp.setStyleSheet('border: 2px solid red')
+        self.inp.setAlignment(Qt.AlignCenter)
+
+        self.out = QLabel('OUTPUT',self)
+        self.out.setGeometry(100,350,800,50)
+        self.out.setStyleSheet('border: 3px solid blue')
+        self.out.setAlignment(Qt.AlignCenter)
+
+    def isPrime(self,x):
+        i = 2
+        while i * i <= x:
+            if x % i == 0:
+                return False
+            i += 1
+        return True
+    def show_prime(self):
+        n = int(self.ln.text())
+        self.inp.setText(self.ln.text())
+        ls = []
+        for x in range(2,n):
+            if self.isPrime(x) == True:
+                ls.append(x)
+        self.out.setText(str(ls))
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    p = Project()
+    p.show()
+    sys.exit(app.exec_())

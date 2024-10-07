@@ -1,0 +1,55 @@
+import os
+os.system('clear')
+class Product:
+    def __init__(self,n,p,y):
+        self.name = n
+        self.price = p
+        self.year = y
+class License_product(Product):
+    def __init__(self,n,p,y,d):
+        super().__init__(n,p,y)
+        self.date = d
+    def find_days(self):
+        y1 = int(self.year.split('.')[2])
+        y2 = int(self.date.split('.')[2])
+        m1 = int(self.year.split('.')[1])
+        m2 = int(self.date.split('.')[1])
+        d1 = int(self.year.split('.')[0])
+        d2 = int(self.date.split('.')[0])
+        y_res = (y2 - y1) * 365
+        m_res = (m2 - m1) * 30
+        d_res = d2 - d1
+        if y_res == 0 and m_res == 0 and d_res == 0:
+            return 0
+        if y_res == 0:
+            if m_res == 0:
+                return d2 - d1
+            else:
+                res = 30 - d1
+                for x in range(m1+1,m2):
+                    res += 30
+                res += d2
+                return res
+        else:
+            res = 365 - (m1 * 30) - (30 - d1)
+            for x in range(y1+1,y2):
+                res += 365
+            res += 365 - (m2 * 30) - (30 - d2)
+            return res
+
+ls = []
+count = 0
+for x in range(5):
+    count += 1
+    print(f'Product {count}.')
+    n = input('Enter name: ')
+    p = int(input('Enter price: '))
+    y = input('Enter the made year: ')
+    d = input('Enter the arrival date at the shop: ')
+    ls.append(License_product(n,p,y,d))
+os.system('clear')
+c = 0
+for y in ls:
+    c += 1
+    print(f'Product {c}.')
+    print(f'It took {y.name} {y.find_days()} days to arrive at the shop')

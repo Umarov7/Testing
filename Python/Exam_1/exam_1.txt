@@ -1,0 +1,12 @@
+def words(w:list):
+    print('Result:')
+    for y in w:
+        if 'k' in y or 'K' in y:
+            print(y,end = ' ')
+            
+ls = list()
+n = int(input('Enter a number of words: '))
+print(f'Enter {n} words:')
+for x in range(n):
+    ls.append(input())
+words(ls)
